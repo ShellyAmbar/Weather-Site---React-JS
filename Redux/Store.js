@@ -1,10 +1,20 @@
 import thunk from "redux-thunk";
-import { applyMiddleware, createStore } from "redux";
-import AllReducers from "./Reducers/MainReducers";
+import { applyMiddleware, createStore, combineReducers } from "redux";
+import {
+  autoCompleteInfoReducer,
+  weatherCurrentInfoReducer,
+  weatherForcastInfoReducer
+} from "./Reducers";
 
 //-- middleware
 const middleware = applyMiddleware(thunk);
 //-- store
-const Store = createStore(AllReducers, middleware);
+const rootReducer = combineReducers({
+  auto: autoCompleteInfoReducer,
+  current: weatherCurrentInfoReducer,
+  forcast: weatherForcastInfoReducer
+});
+
+const Store = createStore(rootReducer, middleware);
 
 export default Store;

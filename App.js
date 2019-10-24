@@ -1,11 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
-import FetchUserData from "./Database/saveSearches";
+import React, { Component } from "react";
+
 import NavBar from "./Components/navBar";
-import TabsOptions from "./Components/tabsOptions";
-import SearchForm from "./Components/searchForm";
-import ModalAlert from "./Components/modalAlert";
-import FavoritePage from "./Components/Pages/favoritesPage";
-import WeatherPage from "./Components/Pages/weatherPage";
+
 import MainRouter from "./RouterNavigation/mainRouter";
 import "bootstrap/dist/css/bootstrap.min.css";
 

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 import SearchForm from "../searchForm";
-import TabsOptions from "../tabsOptions";
+
 class WeatherPage extends Component {
   render() {
     return (
@@ -13,7 +11,7 @@ class WeatherPage extends Component {
             alignItems: "center",
             justifyContent: "center",
             width: "100%",
-            justifyContent: "center",
+
             alignContent: "center"
           }}
         >

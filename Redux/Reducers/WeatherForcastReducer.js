@@ -1,12 +1,27 @@
+import actions from "../../Constans/actions";
 const weatherForcastInfo = (
   state = {
-    weatherForcastInfo: {}
+    weatherForcastInfo: [],
+    errorMassage: ""
   },
   action
 ) => {
-  if ((action.type = "WEATHER_FORCAST_INFO")) {
-    state = { ...state, weatherForcastInfo: action.payload };
-    return state;
+  switch (action.type) {
+    case actions.forcast_weather:
+      return {
+        ...state,
+        weatherForcastInfo: action.payload,
+        errorMassage: ""
+      };
+    case actions.forcast_weather_failed:
+      return {
+        ...state,
+        errorMassage: action.payload
+      };
+    default:
+      return {
+        ...state
+      };
   }
 };
 export default weatherForcastInfo;

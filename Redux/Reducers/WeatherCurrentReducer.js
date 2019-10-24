@@ -1,12 +1,28 @@
+import actions from "../../Constans/actions";
+
 const weatherCurrentInfo = (
   state = {
-    weatherCurrentInfo: {}
+    weatherCurrentInfo: [],
+    errorMassage: ""
   },
   action
 ) => {
-  if ((action.type = "WEATHER_CURRENT_INFO")) {
-    state = { ...state, weatherCurrentInfo: action.payload };
-    return state;
+  switch (action.type) {
+    case actions.current_weather:
+      return {
+        ...state,
+        weatherCurrentInfo: action.payload,
+        errorMassage: ""
+      };
+    case actions.current_weather_failed:
+      return {
+        ...state,
+        errorMassage: action.payload
+      };
+    default:
+      return {
+        ...state
+      };
   }
 };
 export default weatherCurrentInfo;

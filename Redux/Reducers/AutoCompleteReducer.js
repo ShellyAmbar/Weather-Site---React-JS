@@ -1,12 +1,27 @@
-const autoCompleteInfo = (
+import actions from "../../Constans/actions";
+const autoCompleteInfoReducer = (
   state = {
-    autoCompleteInfo: {}
+    autoCompleteInfo: [],
+    errorMassage: ""
   },
   action
 ) => {
-  if ((action.type = "AUTO_INFO")) {
-    state = { ...state, autoCompleteInfo: action.payload };
+  switch (action.type) {
+    case actions.auto_complete:
+      return {
+        ...state,
+        autoCompleteInfo: action.payload,
+        errorMassage: ""
+      };
+    case actions.auto_complete_failed:
+      return {
+        ...state,
+        errorMassage: action.payload
+      };
+    default:
+      return {
+        ...state
+      };
   }
-  return state;
 };
-export default autoCompleteInfo;
+export default autoCompleteInfoReducer;

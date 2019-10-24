@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import FavoritePage from "../Components/Pages/favoritesPage";
 import WeatherPage from "../Components/Pages/weatherPage";
 
