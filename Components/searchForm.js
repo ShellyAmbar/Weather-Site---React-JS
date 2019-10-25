@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AutoCompleteAction } from "../Redux/Actions";
 import TabsOptions from "./tabsOptions";
+import Alert from "react-bootstrap/Alert";
+import { flexbox } from "@material-ui/system";
 
 const mapStateToProps = state => {
   console.log("global state", state);
@@ -19,8 +21,8 @@ const mapDispatchToProps = dispatch => {
 class SearchForm extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      value: "",
       city: "",
       cityKey: "623"
     };
@@ -38,11 +40,11 @@ class SearchForm extends Component {
 
   onChange = e => {
     console.log(e.target.value + " value");
-    this.setState({ value: e.target.value });
+    this.setState({ city: e.target.value });
     this.retrieveDataAsynchronously(e.target.value);
   };
 
-  onChangeSelected = event => {
+  onChangeSelect = event => {
     const selectedIndex = event.target.options.selectedIndex;
     const cityKeyNumber = event.target.options[selectedIndex].getAttribute(
       "data-key"
@@ -50,25 +52,7 @@ class SearchForm extends Component {
     console.log(cityKeyNumber, "City Key");
     this.setState({
       cityKey: cityKeyNumber,
-      value: event.target.value
-    });
-  };
-  onSelectCity = event => {
-    const selectedIndex = event.target.options.selectedIndex;
-    const cityKeyNumber = event.target.options[selectedIndex].getAttribute(
-      "data-key"
-    );
-    this.setState({
-      cityKey: cityKeyNumber,
-      value: event.target.value
-    });
-  };
-
-  onSubmit = () => {
-    this.setState({
-      value: "",
-      city: "",
-      cityKey: ""
+      city: event.target.value
     });
   };
 
@@ -101,7 +85,11 @@ class SearchForm extends Component {
             className="SearchForm"
             style={{
               background: "linear-gradient(135deg, 	#00FFFF 30%, 	#00BFFF 90%)",
-              borderRadius: "15px"
+              borderRadius: "15px",
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
+              flexbox: 1
             }}
           >
             <form
@@ -113,8 +101,11 @@ class SearchForm extends Component {
               }}
             >
               <div>
+                <Alert.Link style={{ height: 10 }}>
+                  Showing data for city :{this.state.city}{" "}
+                </Alert.Link>
                 <input
-                  value={this.state.value}
+                  value={this.state.city}
                   onChange={this.onChange}
                   type="text"
                 />
@@ -122,9 +113,8 @@ class SearchForm extends Component {
                 {tempArray.length > 0 && (
                   <select
                     style={{ display: "block" }}
-                    onChange={this.onChangeSelected}
-                    onSelect={this.onSelectCity}
-                    value={this.state.value}
+                    onChange={this.onChangeSelect}
+                    value={this.state.city}
                   >
                     {tempArray.map((item, index) => (
                       <option
@@ -142,19 +132,11 @@ class SearchForm extends Component {
               <div
                 style={{
                   width: "100%",
-
+                  height: 50,
                   alignItems: "center",
                   textAlign: "center"
                 }}
-              >
-                <button
-                  className="btn btn-outline-success my-2 my-sm-0"
-                  type="submit"
-                  onSubmit={this.onSubmit}
-                >
-                  Clear
-                </button>
-              </div>
+              ></div>
             </form>
           </nav>
         </div>
