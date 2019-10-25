@@ -78,6 +78,13 @@ class TabsOptions extends Component {
     await this.props.getForcastInfo(this.props.cityKey);
   }
 
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.cityKey !== prevProps.cityKey) {
+      await this.props.getCurrentInfo(this.props.cityKey);
+      await this.props.getForcastInfo(this.props.cityKey);
+    }
+  }
+
   handleChangeIndex = index => {
     this.setState({
       value: index
@@ -116,7 +123,7 @@ class TabsOptions extends Component {
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing={3}
+                spacing={2}
               >
                 <div>
                   {this.props.weatherCurrentInfo.map((data, index) => {
@@ -148,7 +155,7 @@ class TabsOptions extends Component {
                   direction="row"
                   justify="center"
                   alignItems="center"
-                  spacing={3}
+                  spacing={2}
                 >
                   {this.props.weatherForcastInfo.map((data, index) => {
                     return (

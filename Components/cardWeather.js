@@ -46,14 +46,14 @@ export default class CardWeather extends Component {
     return (
       <div>
         <MDBCol>
-          <MDBCard style={{ width: "20rem" }}>
+          <MDBCard style={{ width: "20rem", height: "22rem" }}>
             <MDBCardImage
-              className="img-fluid"
+              style={{ height: 100, width: 200 }}
               src={`https://www.accuweather.com/images/weathericons/${Icon}.svg`}
               waves
             />
             <MDBCardBody>
-              <MDBCardTitle>{Date}</MDBCardTitle>
+              <MDBCardTitle>{new Date(Date).toUTCString()}</MDBCardTitle>
               <MDBCardText>
                 {WeatherText + " Temperature:  " + Temperature}
               </MDBCardText>

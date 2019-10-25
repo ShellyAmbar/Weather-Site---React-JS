@@ -13,9 +13,10 @@ class CardFavorite extends Component {
   constructor(props) {
     super(props);
 
+    const newDate = new Date(this.props.Date).toUTCString();
     this.state = {
       key: this.props.key,
-      Date: this.props.Date,
+      Date: newDate,
       Link: this.props.Link,
       Temperature: this.props.Temperature,
       WeatherText: this.props.WeatherText,
@@ -26,18 +27,17 @@ class CardFavorite extends Component {
   render() {
     return (
       <MDBCol>
-        <MDBCard style={{ width: "22rem" }}>
+        <MDBCard style={{ width: "20rem", height: "22rem" }}>
           <MDBCardImage
-            className="img-fluid"
+            style={{ height: 100, width: 200 }}
             src={`https://www.accuweather.com/images/weathericons/${this.state.Icon}.svg`}
-            waves
           />
           <MDBCardBody>
             <MDBCardTitle>{this.state.Date}</MDBCardTitle>
             <MDBCardText>
               {this.state.WeatherText +
                 " Temperature:  " +
-                this.setState.Temperature}
+                this.state.Temperature}
             </MDBCardText>
 
             <MDBBtn href={this.state.Link}>navigate to website</MDBBtn>
