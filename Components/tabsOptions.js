@@ -10,8 +10,10 @@ import Paper from "@material-ui/core/Paper";
 import CardWeather from "./cardWeather";
 import { connect } from "react-redux";
 import { WeatherCurrentAction, WeatherForcastAction } from "../Redux/Actions";
+import Grid from "@material-ui/core/Grid";
 
 const mapStateToProps = state => {
+  console.log("global state of weather", state);
   return {
     weatherCurrentInfo: state.current.weatherCurrentInfo,
     errorMassageCurrentInfo: state.current.errorMassage,
@@ -107,38 +109,72 @@ class TabsOptions extends Component {
         </Tabs>
 
         <TabPanel value={this.state.value} index={0}>
-          <div>
-            <h1>Current weather for today</h1>
-
-            {this.props.weatherCurrentInfo.lenght > 0 &&
-              this.props.weatherCurrentInfo.map((data, index) => (
-                <CardWeather
-                  key={index}
-                  content={data.WeatherText}
-                  title={"Temperature : " + data.Temperature.Value}
-                  date={data.LocalObservationDateTime}
-                />
-              ))}
+          <div style={{ justifyContent: "center", alignItems: "center" }}>
+            {JSON.stringify(this.props.weatherCurrentInfo).length > 0 && (
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+                spacing={3}
+              >
+                <div>
+                  {this.props.weatherCurrentInfo.map((data, index) => {
+                    return (
+                      <div>
+                        <CardWeather
+                          key={index}
+                          i={index}
+                          Temperature={data.Temperature.Metric.Value}
+                          WeatherText={data.WeatherText}
+                          Link={data.Link}
+                          Date={data.LocalObservationDateTime}
+                          Icon={data.WeatherIcon}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </Grid>
+            )}
           </div>
         </TabPanel>
         <TabPanel value={this.state.value} index={1}>
-          <div>
-            <h1>Forcast weather for the next 5 days</h1>
+          <div style={{ justifyContent: "center", alignItems: "center" }}>
             <div>
-              {this.props.weatherForcastInfo.lenght > 0 &&
-                this.props.weatherForcastInfo.map((data, index) => (
-                  <CardWeather
-                    key={index}
-                    content={
-                      "Day: " +
-                      data.Day.IconPhrase +
-                      " Night: " +
-                      data.Night.IconPhrase
-                    }
-                    title={"Temperature :" + data.Temperature.value}
-                    date={data.Date}
-                  />
-                ))}
+              {JSON.stringify(this.props.weatherForcastInfo).length > 0 && (
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  spacing={3}
+                >
+                  {this.props.weatherForcastInfo.map((data, index) => {
+                    return (
+                      <CardWeather
+                        key={index}
+                        i={index}
+                        Temperature={
+                          ("Minimum: ",
+                          data.Temperature.Minimum.Value,
+                          ", Maximum: ",
+                          data.Temperature.Maximum.Value)
+                        }
+                        WeatherText={
+                          ("Day: ",
+                          data.Day.IconPhrase,
+                          " Night: ",
+                          data.Night.IconPhrase)
+                        }
+                        Link={data.Link}
+                        Date={data.Date}
+                        Icon={data.Day.Icon}
+                      />
+                    );
+                  })}
+                </Grid>
+              )}
             </div>
           </div>
         </TabPanel>

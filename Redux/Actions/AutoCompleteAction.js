@@ -6,11 +6,6 @@ export default function getAutoCompleteCity(cityString) {
 
   return function(dispatch) {
     fetch(
-      // "https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=" +
-      //   locationKey +
-      //   "&q=" +
-      //   cityString +
-      //   "&language=en"
       `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${locationKey}&q=${cityString}&language=en`
     )
       .then(Response => {

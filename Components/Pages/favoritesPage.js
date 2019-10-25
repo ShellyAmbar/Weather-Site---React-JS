@@ -3,6 +3,14 @@ import CardFavorite from "../cardFavorite";
 import Grid from "@material-ui/core/Grid";
 
 class FavoritePage extends Component {
+  constructor(props) {
+    super(props);
+    var favorites = [];
+    favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    this.state = {
+      favoritesList: favorites
+    };
+  }
   render() {
     return (
       <div
@@ -23,12 +31,18 @@ class FavoritePage extends Component {
           alignItems="center"
           spacing={2}
         >
-          <CardFavorite />
-          <CardFavorite />
-          <CardFavorite />
-          <CardFavorite />
-          <CardFavorite />
-          <CardFavorite />
+          {this.state.favoritesList.map((weather, index) => {
+            return (
+              <CardFavorite
+                key={index}
+                Date={weather.Date}
+                Link={weather.Link}
+                Temperature={weather.Temperature}
+                WeatherText={weather.WeatherText}
+                Icon={weather.Icon}
+              />
+            );
+          })}
         </Grid>
       </div>
     );

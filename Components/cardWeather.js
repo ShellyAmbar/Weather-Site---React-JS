@@ -2,47 +2,15 @@ import React, { Component } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Typography from "@material-ui/core/Typography";
-import clsx from "clsx";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-
-const useStyles = makeStyles(theme => ({
-  card: {
-    maxWidth: 345
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
-  avatar: {
-    backgroundColor: red[500]
-  },
-  root: {
-    flexGrow: 1
-  }
-}));
+import {
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCol
+} from "mdbreact";
 
 export default class CardWeather extends Component {
   constructor(props) {
@@ -58,53 +26,45 @@ export default class CardWeather extends Component {
     });
   };
 
+  handleExpandClickFavorite = () => {
+    const { Date, Link, Temperature, WeatherText, Icon } = this.props;
+    var weatherObject = {
+      Date: Date,
+      Link: Link,
+      Temperature: Temperature,
+      WeatherText: WeatherText,
+      Icon: Icon
+    };
+    var favorites = [];
+    favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    favorites.push(weatherObject);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
+
   render() {
-    const classes = useStyles();
+    const { Date, i, Link, Temperature, WeatherText, Icon } = this.props;
     return (
       <div>
-        <Card className={classes.card}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="recipe" className={classes.avatar}>
-                R
-              </Avatar>
-            }
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={this.props.title}
-            subheader={this.props.date}
-          />
+        <MDBCol>
+          <MDBCard style={{ width: "20rem" }}>
+            <MDBCardImage
+              className="img-fluid"
+              src={`https://www.accuweather.com/images/weathericons/${Icon}.svg`}
+              waves
+            />
+            <MDBCardBody>
+              <MDBCardTitle>{Date}</MDBCardTitle>
+              <MDBCardText>
+                {WeatherText + " Temperature:  " + Temperature}
+              </MDBCardText>
 
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {this.props.data}
-            </Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: this.state.expanded
-              })}
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <Typography paragraph>{this.props.data}</Typography>
-            </CardContent>
-          </Collapse>
-        </Card>
+              <MDBBtn href={Link}>navigate to website</MDBBtn>
+              <MDBBtn onClick={this.handleExpandClickFavorite}>
+                Add To Favorites
+              </MDBBtn>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
       </div>
     );
   }

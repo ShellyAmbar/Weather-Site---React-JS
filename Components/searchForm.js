@@ -152,13 +152,12 @@ class SearchForm extends Component {
                   type="submit"
                   onSubmit={this.onSubmit}
                 >
-                  Clear all
+                  Clear
                 </button>
               </div>
             </form>
           </nav>
         </div>
-
         <div>
           <TabsOptions cityKey={this.state.cityKey} />
         </div>

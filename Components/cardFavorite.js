@@ -10,22 +10,37 @@ import {
 } from "mdbreact";
 
 class CardFavorite extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      key: this.props.key,
+      Date: this.props.Date,
+      Link: this.props.Link,
+      Temperature: this.props.Temperature,
+      WeatherText: this.props.WeatherText,
+      Icon: this.props.Icon
+    };
+  }
+
   render() {
     return (
       <MDBCol>
         <MDBCard style={{ width: "22rem" }}>
           <MDBCardImage
             className="img-fluid"
-            src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+            src={`https://www.accuweather.com/images/weathericons/${this.state.Icon}.svg`}
             waves
           />
           <MDBCardBody>
-            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardTitle>{this.state.Date}</MDBCardTitle>
             <MDBCardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card&apos;s content.
+              {this.state.WeatherText +
+                " Temperature:  " +
+                this.setState.Temperature}
             </MDBCardText>
-            <MDBBtn href="#">MDBBtn</MDBBtn>
+
+            <MDBBtn href={this.state.Link}>navigate to website</MDBBtn>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
