@@ -49,7 +49,7 @@ class SearchForm extends Component {
     const cityKeyNumber = event.target.options[selectedIndex].getAttribute(
       "data-key"
     );
-    console.log(cityKeyNumber, "City Key");
+    console.log(cityKeyNumber, "City Key Changed in SearchForm");
     this.setState({
       cityKey: cityKeyNumber,
       city: event.target.value

@@ -80,6 +80,7 @@ class TabsOptions extends Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.cityKey !== prevProps.cityKey) {
+      console.log("current city key : ", this.props.cityKey);
       await this.props.getCurrentInfo(this.props.cityKey);
       await this.props.getForcastInfo(this.props.cityKey);
     }
@@ -135,7 +136,7 @@ class TabsOptions extends Component {
                           Temperature={data.Temperature.Metric.Value}
                           WeatherText={data.WeatherText}
                           Link={data.Link}
-                          Date={data.LocalObservationDateTime}
+                          currentDate={data.LocalObservationDateTime}
                           Icon={data.WeatherIcon}
                         />
                       </div>
@@ -175,7 +176,7 @@ class TabsOptions extends Component {
                           data.Night.IconPhrase)
                         }
                         Link={data.Link}
-                        Date={data.Date}
+                        currentDate={data.Date}
                         Icon={data.Day.Icon}
                       />
                     );
