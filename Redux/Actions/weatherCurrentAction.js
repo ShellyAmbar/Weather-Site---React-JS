@@ -1,7 +1,7 @@
 import actions_names from "../../Constans/actions";
 
 export default function getCurrentWeather(cityKey) {
-  const locationKey = "uhgT3zk1J4ov3ni3airgXGnRLZf36jV2";
+  const locationKey = "ANLnOrUjJlAZirkrBvHrSVJG99s089dt";
 
   return function(dispatch) {
     fetch(

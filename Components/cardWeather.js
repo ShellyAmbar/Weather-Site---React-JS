@@ -53,7 +53,7 @@ export default class CardWeather extends Component {
               <MDBBtn href={Link}>navigate to website</MDBBtn>
               <Fab
                 onClick={this.handleExpandClickFavorite}
-                style={{ marginLeft: 20, color: "#FF0000" }}
+                style={{ marginLeft: 20, marginTop: 10, color: "#FF0000" }}
                 size="medium"
                 aria-label="add"
               >
