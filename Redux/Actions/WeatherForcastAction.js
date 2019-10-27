@@ -10,7 +10,7 @@ export default function getWeeklytWeather(cityKey) {
         if (Response.status === 200 && Response.ok === true) {
           return Response.json();
         } else {
-          throw Error("error");
+          throw new Error("Something went wrong in fetching foracst weather");
         }
       })
       .then(JSONres => {
@@ -21,7 +21,6 @@ export default function getWeeklytWeather(cityKey) {
         });
       })
       .catch(err => {
-        console.log(err);
         dispatch({
           type: actions_names.forcast_weather_failed,
           payload: "Failed to get the forcast weather."

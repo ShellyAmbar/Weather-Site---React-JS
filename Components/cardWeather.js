@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
 import {
   MDBBtn,
   MDBCard,
@@ -12,7 +10,7 @@ import {
   MDBCol
 } from "mdbreact";
 import Fab from "@material-ui/core/Fab";
-import FavoriteEmpty from "@material-ui/icons/FavoriteBorder";
+
 import Favorite from "@material-ui/icons/Favorite";
 export default class CardWeather extends Component {
   constructor(props) {

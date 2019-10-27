@@ -12,7 +12,7 @@ export default function getCurrentWeather(cityKey) {
         if (Response.status === 200 && Response.ok === true) {
           return Response.json();
         } else {
-          throw Error("error");
+          throw new Error("Something went wrong in fetching current weather");
         }
       })
       .then(JSONres => {
@@ -24,7 +24,6 @@ export default function getCurrentWeather(cityKey) {
         });
       })
       .catch(err => {
-        console.log(err, "error current weather");
         dispatch({
           type: actions_names.current_weather_failed,
           payload: "Failed to get the current weather."

@@ -6,11 +6,10 @@ import {
   MDBCardImage,
   MDBCardTitle,
   MDBCardText,
-  MDBCol,
-  MDBIcon
+  MDBCol
 } from "mdbreact";
 import Fab from "@material-ui/core/Fab";
-import FavoriteEmpty from "@material-ui/icons/FavoriteBorder";
+
 import Delete from "@material-ui/icons/Delete";
 
 class CardFavorite extends Component {

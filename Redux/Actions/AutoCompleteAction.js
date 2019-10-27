@@ -13,7 +13,7 @@ export default function getAutoCompleteCity(cityString) {
         if (Response.status === 200 && Response.ok === true) {
           return Response.json();
         } else {
-          throw Error("error");
+          throw new Error("Something went wrong in fetching auto-complete");
         }
       })
       .then(JSONres => {
@@ -22,7 +22,6 @@ export default function getAutoCompleteCity(cityString) {
         dispatch({ type: actions_names.auto_complete, payload: JSONres });
       })
       .catch(err => {
-        console.log(err);
         dispatch({
           type: actions_names.auto_complete_failed,
           payload: "Failed to get the auto complete city."
