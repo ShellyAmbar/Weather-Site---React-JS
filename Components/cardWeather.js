@@ -11,7 +11,9 @@ import {
   MDBCardText,
   MDBCol
 } from "mdbreact";
-
+import Fab from "@material-ui/core/Fab";
+import FavoriteEmpty from "@material-ui/icons/FavoriteBorder";
+import Favorite from "@material-ui/icons/Favorite";
 export default class CardWeather extends Component {
   constructor(props) {
     super(props);
@@ -51,9 +53,14 @@ export default class CardWeather extends Component {
               </MDBCardText>
 
               <MDBBtn href={Link}>navigate to website</MDBBtn>
-              <MDBBtn onClick={this.handleExpandClickFavorite}>
-                Add To Favorites
-              </MDBBtn>
+              <Fab
+                onClick={this.handleExpandClickFavorite}
+                style={{ marginLeft: 20, color: "#FF0000" }}
+                size="medium"
+                aria-label="add"
+              >
+                <Favorite />
+              </Fab>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

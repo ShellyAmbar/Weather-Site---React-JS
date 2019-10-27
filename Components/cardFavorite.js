@@ -6,8 +6,12 @@ import {
   MDBCardImage,
   MDBCardTitle,
   MDBCardText,
-  MDBCol
+  MDBCol,
+  MDBIcon
 } from "mdbreact";
+import Fab from "@material-ui/core/Fab";
+import FavoriteEmpty from "@material-ui/icons/FavoriteBorder";
+import Delete from "@material-ui/icons/Delete";
 
 class CardFavorite extends Component {
   constructor(props) {
@@ -15,7 +19,6 @@ class CardFavorite extends Component {
 
     const newDate = new Date(this.props.Date).toUTCString();
     this.state = {
-      key: this.props.key,
       Date: newDate,
       Link: this.props.Link,
       Temperature: this.props.Temperature,
@@ -23,6 +26,8 @@ class CardFavorite extends Component {
       Icon: this.props.Icon
     };
   }
+
+  onClickDeleteLike = () => {};
 
   render() {
     return (
@@ -41,6 +46,14 @@ class CardFavorite extends Component {
             </MDBCardText>
 
             <MDBBtn href={this.state.Link}>navigate to website</MDBBtn>
+            <Fab
+              onClick={this.onClickDeleteLike}
+              style={{ marginLeft: 20, color: "#FF0000" }}
+              size="medium"
+              aria-label="add"
+            >
+              <Delete />
+            </Fab>
           </MDBCardBody>
         </MDBCard>
       </MDBCol>
